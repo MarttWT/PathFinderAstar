@@ -13,3 +13,7 @@ Edge::Edge(Node* a, Node* b)
     distance = calculateHeuristic(a,b);
 
 }
+float Edge::getDistance() const
+{
+    return distance;
+}

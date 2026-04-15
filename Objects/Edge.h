@@ -11,10 +11,10 @@ class Edge
 {
     Node* nodeA = new Node();
     Node* nodeB = new Node();
-    int distance;//((X2-X1)+(Y2-Y1))^1/2
+    float distance;//((X2-X1)+(Y2-Y1))^1/2
     public:
     Edge(Node* a, Node* b);
-    int getDistance();
+    float getDistance() const;
 };
 
 

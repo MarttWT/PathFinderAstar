@@ -10,4 +10,5 @@ add_executable(PathFinderAstar main.cpp
         Objects/Edge.h
         Astar.cpp
         Objects/Map.cpp
-        Objects/Map.h)
+        Objects/Map.h
+)
