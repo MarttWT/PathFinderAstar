@@ -3,12 +3,46 @@
 //
 #include "Objects/Node.h"
 #include "Objects/Edge.h"
+#include "Objects/Map.h"
 #include <cmath>
+#include <stdexcept>
 #include <string>
-
-void Astar(Node* Start, Node* End, int h, Edge* edges)
+#include <iostream>
+float calculateHeuristic(const Node* Start, const Node* End);
+void Astar(Node* Start, Node* End, float h, const std::vector<Edge*>& edges)
 {
-    std::string totalPath;
+    h=calculateHeuristic(Start, End);
+    Node* actualNode=Start;
+    Map map = Map(edges);
+    std::vector<Node*> conectedNodes;
+    //f(n)=g(n)+h(n)
+    while (actualNode != End)
+    {
+       conectedNodes=map.connectedNodes(actualNode);
+        if (conectedNodes.empty())
+        {
+            throw std::invalid_argument("No nodes connected");
+        }
+        float f;
+        float comprobation;
+        Node* nextNode;
+        for (Node* node : conectedNodes)
+        {
+            comprobation=abs(actualNode->getPositionX()-node->getPositionX())+abs(actualNode->getPositionY()-node->getPositionY())+h;
+            if (comprobation<f)
+            {
+                f=comprobation;
+                nextNode=node;
+            }
+
+        }
+        std::cout << nextNode->getId() << std::endl;
+        if (nextNode->getId()==End->getId())
+        {
+            std::cout << "Nodo encontrado" << std::endl;
+            exit(0);
+        }
+    }
 
 }
 float calculateHeuristic(const Node* Start, const Node* End)

@@ -8,13 +8,14 @@
 
 class Node
 {
-    static int id;
+    static int counter;
+    int id;
     int positionX = 0;
     int positionY = 0;
     public:
         Node(int x, int y);
         Node();
-    static int getId();
+    int getId() const;
     [[nodiscard]] int getPositionX() const;
     [[nodiscard]] int getPositionY() const;
 

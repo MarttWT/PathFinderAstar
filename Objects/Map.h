@@ -12,14 +12,12 @@
 
 class Map
 {
-    std::vector<Node> nodes;
-    std::vector<Edge> edges;
+    std::vector<Edge*> edges;
     public:
-    Map(std::vector<Node> ns, std::vector<Edge> es);
-    std::vector<Node> conectedNodes(Node node);
-
-
-
+    Map(const std::vector<Edge*>& es);
+    std::vector<Node*> connectedNodes(Node* node);
+    private:
+    int InEdge(const Node* node, const Edge* edge);
 };
 
 

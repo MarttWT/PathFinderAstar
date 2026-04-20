@@ -17,3 +17,12 @@ float Edge::getDistance() const
 {
     return distance;
 }
+
+Node* Edge::getNodeA() const
+{
+    return nodeA;
+}
+Node* Edge::getNodeB() const
+{
+    return nodeA;
+}

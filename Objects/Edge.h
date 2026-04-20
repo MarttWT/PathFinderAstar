@@ -15,6 +15,8 @@ class Edge
     public:
     Edge(Node* a, Node* b);
     float getDistance() const;
+    Node* getNodeA() const;
+    Node* getNodeB() const;
 };
 
 

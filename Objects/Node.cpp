@@ -6,22 +6,21 @@
 
 Node::Node(int x, int y)
 {
-    id++;
+    counter++;
+    id=counter;
     positionY=y;
     positionX=x;
 }
 
 Node::Node()
 {
-    positionX=0;
-    positionY=0;
+    Node(0,0);
 }
 
-int Node::getId()
+int Node::getId() const
 {
     return id;
 }
-
 int Node::getPositionX() const
 {
     return positionX;
