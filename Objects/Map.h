@@ -12,12 +12,10 @@
 
 class Map
 {
-    std::vector<Edge*> edges;
+    std::vector<std::vector<Node>> matriz(int filas, std::vector<Node>(columnas));
     public:
-    Map(const std::vector<Edge*>& es);
-    std::vector<Node*> connectedNodes(Node* node);
-    private:
-    int InEdge(const Node* node, const Edge* edge);
+    Map(int filas, std::vector<Node> columnas);
+
 };
 
 

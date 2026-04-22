@@ -18,8 +18,6 @@ class Node
     int getId() const;
     [[nodiscard]] int getPositionX() const;
     [[nodiscard]] int getPositionY() const;
-
-
 };
 
 

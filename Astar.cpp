@@ -15,10 +15,10 @@ void Astar(Node* Start, Node* End, float h, const std::vector<Edge*>& edges)
     Node* actualNode=Start;
     Map map = Map(edges);
     std::vector<Node*> conectedNodes;
-    //f(n)=g(n)+h(n)
+    //f(n)=g(n)+h(n) = distancia-start-a-current_node + distancia-current-node-a-end-estimacion
     while (actualNode != End)
     {
-       conectedNodes=map.connectedNodes(actualNode);
+        conectedNodes=map.connectedNodes(actualNode);
         if (conectedNodes.empty())
         {
             throw std::invalid_argument("No nodes connected");
@@ -28,8 +28,8 @@ void Astar(Node* Start, Node* End, float h, const std::vector<Edge*>& edges)
         Node* nextNode;
         for (Node* node : conectedNodes)
         {
-            comprobation=abs(actualNode->getPositionX()-node->getPositionX())+abs(actualNode->getPositionY()-node->getPositionY())+h;
-            if (comprobation<f)
+            comprobation = abs(actualNode->getPositionX() - node->getPositionX()) + abs(actualNode->getPositionY() - node->getPositionY()) + h;
+            if (comprobation < f)
             {
                 f=comprobation;
                 nextNode=node;
@@ -37,7 +37,7 @@ void Astar(Node* Start, Node* End, float h, const std::vector<Edge*>& edges)
 
         }
         std::cout << nextNode->getId() << std::endl;
-        if (nextNode->getId()==End->getId())
+        if (nextNode->getId() == End->getId())
         {
             std::cout << "Nodo encontrado" << std::endl;
             exit(0);
