@@ -1,5 +1,5 @@
 # List
-![Badge Development](https://img.shields.io/badge/Edge-COMPLETED-red)
+![Badge Development](https://img.shields.io/badge/Edge-ERESED-purple)
 
 ![Badge Development](https://img.shields.io/badge/Map-COMPLETED-red)
 

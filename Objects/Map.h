@@ -12,10 +12,16 @@
 
 class Map
 {
-    std::vector<std::vector<Node>> matriz(int filas, std::vector<Node>(columnas));
+    std::vector<std::vector<int>> matriz;
+    std::vector<Node*> nodes;
     public:
-    Map(int filas, std::vector<Node> columnas);
-
+    Map();
+    std::vector<Node*> connectedNodes(const Node* node) const;
+    void initializeMap(const std::vector<Node*>& n,std::vector<std::vector<int>> m);
+    void addNode(Node* n);
+    void removeNode(const Node* n);
+    void clearMap();
+    Node* getNode(int y) const;
 };
 
 

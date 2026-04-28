@@ -5,51 +5,37 @@
 #include "Objects/Edge.h"
 #include "Objects/Map.h"
 #include <cmath>
-#include <stdexcept>
-#include <string>
 #include <iostream>
-float calculateHeuristic(const Node* Start, const Node* End);
-void Astar(Node* Start, Node* End, float h, const std::vector<Edge*>& edges)
-{
-    h=calculateHeuristic(Start, End);
-    Node* actualNode=Start;
-    Map map = Map(edges);
-    std::vector<Node*> conectedNodes;
-    //f(n)=g(n)+h(n) = distancia-start-a-current_node + distancia-current-node-a-end-estimacion
-    while (actualNode != End)
-    {
-        conectedNodes=map.connectedNodes(actualNode);
-        if (conectedNodes.empty())
-        {
-            throw std::invalid_argument("No nodes connected");
-        }
-        float f;
-        float comprobation;
-        Node* nextNode;
-        for (Node* node : conectedNodes)
-        {
-            comprobation = abs(actualNode->getPositionX() - node->getPositionX()) + abs(actualNode->getPositionY() - node->getPositionY()) + h;
-            if (comprobation < f)
-            {
-                f=comprobation;
-                nextNode=node;
-            }
+double calculateDistance(const Node* currentNode, const Node* End);
 
-        }
-        std::cout << nextNode->getId() << std::endl;
-        if (nextNode->getId() == End->getId())
+void Astar(const Node* Start, const Node* End, const Map* map)
+{
+    double heuristic = calculateDistance(Start, End);
+    const Node* currentNode=Start;
+    while (currentNode!=End)
+    {
+        double distance=0;
+        double distanceMIN=0;
+        const Node* nextNode;
+        std::vector<Node*> options = map->connectedNodes(currentNode);
+        distanceMIN = calculateDistance(currentNode, options[0]);
+        for (int i=1;i<options.size();i++)
         {
-            std::cout << "Nodo encontrado" << std::endl;
-            exit(0);
+            distance = calculateDistance(currentNode, options[i]);
+            if (distance < distanceMIN)
+            {
+                distanceMIN = distance;
+            }
         }
     }
 
+
 }
-float calculateHeuristic(const Node* Start, const Node* End)
+double calculateDistance(const Node* currentNode, const Node* End)
 {
-    float distance=0;
-    auto X= pow(Start->getPositionX() - End->getPositionX(),2);
-    auto Y = pow(Start->getPositionY() - End->getPositionY(), 2);
+    double distance=0;
+    const auto X= pow(currentNode->getPositionX() - End->getPositionX(),2);
+    const auto Y = pow(currentNode->getPositionY() - End->getPositionY(), 2);
     distance = sqrt(X + Y);
     return distance;
 }
